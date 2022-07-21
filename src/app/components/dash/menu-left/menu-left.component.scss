@@ -1,0 +1,118 @@
+#menu-left{
+  width: 90px;
+  position: absolute;
+  background-color: #015da4;
+  transition:  0.3s;
+  height: calc(100vh - 85px);
+}
+.backdrop{
+  width: 90px !important;
+  transition:  0.3s;
+}
+.fa-slash{
+  text-shadow: -1px 1.5px 0 #015da4, 1px -1.5px 0 #015da4;
+}
+.fa-thumbtack{
+  opacity: 0;
+  transition: 0.2s;
+}
+.option{
+  max-height: 51px;
+  transition: 0.1s;
+}
+.option i{
+  font-size: 25px;
+  min-width: 100%;
+  text-align: center;
+  transition: 0.15s;
+  transition-delay: 0.15s;
+}
+.option:hover{
+  background: #084d83;
+  transform: scale(1.1);
+}
+.option:hover div{
+  color: #f9464f;
+  font-weight: 500;
+}
+.option div{
+  margin-left: -40px;
+  opacity: 0;
+  visibility: hidden;
+}
+.active{
+  background: #054f8794;
+  & div{
+    color: #f9464f;
+    font-weight: 500;
+  }
+}
+#menu-left.show + .backdrop{
+  width: 250px !important;
+}
+#menu-left:hover, #menu-left.show{
+  width: 250px !important;
+}
+#menu-left.show > .option > i, #menu-left:hover > .option > i{
+  min-width: 35px;
+  transition: 0.1s;
+  transition-delay: 0s;
+}
+#menu-left.show > .option > div, #menu-left:hover > .option > div{
+  margin-left: 0px;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.2s, visibility 0.2s, margin-left 0.2s;
+  transition-delay: 0.18s;
+}
+#menu-left.show > .option > div > span, #menu-left:hover > .option > div > span{
+  display: inline;
+}
+#menu-left > .option > div > span, #menu-left > .option > div > span{
+  display: none;
+}
+#menu-left.show .fa-thumbtack, #menu-left:hover .fa-thumbtack{
+  opacity: 1;
+}
+
+@media (max-width: 766px) {
+  #menu-left, #menu-left:not(.show){
+    width: 0 !important;
+  }
+  #menu-left > *{
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+  #menu-left.show > *{
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: opacity 0.2s;
+    transition-delay: 0.15s;
+  }
+  .backdrop{
+    position: absolute;
+    width: 0 !important;
+    height: calc(100vh - 85px);
+    background: #9292925d;
+    z-index: -1;
+    transition: 0s;
+  }
+  #menu-left + .backdrop::after{
+    content: '\f0c9';
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    position: absolute;
+    top: -60px;
+    color: #015da4;
+    margin: 0 24px;
+    font-size: 25px;
+    cursor: pointer;
+  }
+  #menu-left.show + .backdrop::after{
+    content: '';
+  }
+  #menu-left.show + .backdrop{
+    width: 100% !important;
+    transition: 0.1s;
+  }
+}

@@ -1,0 +1,104 @@
+<main class="py-5 px-sm-5 px-4">
+  <section class="view" *ngIf="!form">
+    <h3>Pacientes</h3>
+    <div class="mb-3 text-end">
+      <button class="btn btn-1" (click)="initFormPatient()">Nuevo Paciente</button>
+    </div>
+    <div class="table-responsive">
+      <table class="table align-middle text-center">
+        <thead>
+          <tr>
+            <th>nombre</th>
+            <th>cedula</th>
+            <th>direccion</th>
+            <th>telefono</th>
+            <th>ciudad</th>
+            <th>correo</th>
+            <th>Accion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of patients; let i = index">
+            <td>{{item.nombre}}</td>
+            <td>{{item.cedula}}</td>
+            <td>{{item.direccion}}</td>
+            <td>{{item.telefono}}</td>
+            <td>{{item.ciudad}}</td>
+            <td>{{item.correo}}</td>
+            <td>
+              <div class="d-flex gap-2 justify-content-center">
+                <button class="btn btn-1" (click)="initFormPatient(item, i)">Ver</button>
+                <button class="btn btn-danger" (click)="delete(item.id)">Eliminar</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section class="view" *ngIf="form">
+    <h3 class="mb-3">{{patient ? 'Editar Paciente' : 'Nuevo Paciente'}}</h3>
+    <form class="row g-3" [formGroup]="formPatient">
+      <div class="col-md-6">
+        <div class="form-floating mb-3">
+          <input class="form-control" type="text" formControlName="nombre" placeholder=" ">
+          <label>Nombre</label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-floating mb-3">
+          <input class="form-control" type="number" formControlName="cedula" placeholder=" ">
+          <label>Cedula</label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-floating mb-3">
+          <input class="form-control" type="text" formControlName="direccion" placeholder=" ">
+          <label>Direccion</label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-floating mb-3">
+          <input class="form-control" type="number" formControlName="telefono" placeholder=" ">
+          <label>Telfono</label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-floating mb-3">
+          <input class="form-control" type="text" formControlName="ciudad" placeholder=" ">
+          <label>Ciudad</label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-floating mb-3">
+          <input class="form-control" type="email" formControlName="correo" placeholder=" ">
+          <label>Correo</label>
+        </div>
+      </div>
+      <div>
+        <button class="btn btn-1" (click)="createOrEdit(formPatient.value, patient?.id)">Guardar</button>
+      </div>
+    </form>
+    <form class="mt-4" *ngIf="patient">
+      <h4>Agregar Medico</h4>
+      <div class="col-md-6">
+        <div class="form-floating mb-3">
+          <select class="form-select" #doctor>
+            <option [value]="null" selected disabled>- Seleccione -</option>
+            <option *ngFor="let item of doctors" [value]="item.id">{{item.nombre}}</option>
+          </select>
+          <label>Correo</label>
+        </div>
+      </div>
+      <div class="d-flex gap-3 flex-wrap p-3">
+        <span class="p-2 bg-gray rounded-pill" *ngFor="let item of patient.paciente_medicos, let i = index">
+          {{item.medicos.nombre}}
+          <small class="text-danger user-select-none" role="button" (click)="deleteDoctor(item.id, i)">✕</small>
+        </span>
+      </div>
+      <div class="col-md-6">
+        <button class="btn btn-1" (click)="createDoctorPatient(doctor)">Guardar</button>
+      </div>
+    </form>
+  </section>
+</main>

@@ -1,0 +1,13 @@
+<nav class="navbar navbar-expand-lg px-4 py-3 shadow-sm" style="height: 85px;">
+  <img class="logo" width="56px" src="assets/img/logo.png" role="button" routerLink="/dash/home">
+  <div class="ms-auto d-flex align-items-center gap-4">
+    <div class="dropdown">
+      <i class="fas fa-ellipsis-v fs-5" role="button" data-bs-toggle="dropdown"></i>
+      <ul class="dropdown-menu dropdown-1 shadow-sm" aria-labelledby="dropdownMenuButton1">
+        <li>
+          <a class="dropdown-options d-flex align-items-center gap-2" (click)="logout()"><i class="fas fa-sign-out-alt fs-5"></i> Cerra Sesión</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

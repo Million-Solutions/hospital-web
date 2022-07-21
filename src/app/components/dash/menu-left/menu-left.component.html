@@ -1,0 +1,20 @@
+<aside class="pt-4 shadow-sm text-white" [ngClass]="{'show' : show}" id="menu-left">
+  <div *ngIf="window.innerWidth > 766">
+    <i class="fas fa-thumbtack position-absolute end-0 top-0 m-2 text-secondary text-white" (click)="show = !show" role="button"></i>
+    <i class="fas fa-slash position-absolute end-0 top-0 my-2 mx-1 text-secondary text-white" (click)="show = !show" *ngIf="show" role="button"></i>
+  </div>
+  <button class="btn-transparent position-absolute end-0 top-0 me-2 mt-1 text-white" *ngIf="window.innerWidth <= 766" (click)="show = !show" id="btn-hide"><b>╳</b></button>
+  <label for="btn-hide" class="d-flex gap-2 align-items-center mx-2 p-2 option my-1 rounded-1" routerLink="/dash/hospitales" routerLinkActive="active" role="button">
+    <i class="fas fa-hospital"></i>
+    <div><span>Hospitales</span></div>
+  </label>
+  <label for="btn-hide" class="d-flex gap-2 align-items-center mx-2 p-2 option my-1 rounded-1" routerLink="/dash/medicos" routerLinkActive="active" role="button">
+    <i class="fas fa-user-md"></i>
+    <div><span>Medicos</span></div>
+  </label>
+  <label for="btn-hide" class="d-flex gap-2 align-items-center mx-2 p-2 option my-1 rounded-1" routerLink="/dash/pacientes" routerLinkActive="active" role="button">
+    <i class="fas fa-user-injured"></i>
+    <div><span>Pacientes</span></div>
+  </label>
+</aside>
+<div class="backdrop" (click)="show = !show"></div>
